@@ -19,11 +19,11 @@ namespace ToBank
 		/// <summary>
 		/// Numeric
 		/// </summary>
-		N,
+		Numeric,
 		/// <summary>
 		/// Alphanumeric
 		/// </summary>
-		A,
+		AlphaNumeric,
 		/// <summary>
 		/// Custom format
 		/// </summary>

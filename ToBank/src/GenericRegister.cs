@@ -23,7 +23,7 @@ namespace ToBank
 		private int _start = 0;
 		private int _end = 0;
 		private string _value = string.Empty;
-		private ComparerInterface _Comparer = null;
+		private IComparer _Comparer = null;
 		
 		public GenericRegister()
 		{

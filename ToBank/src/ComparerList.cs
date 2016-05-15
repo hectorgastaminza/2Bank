@@ -14,7 +14,7 @@ namespace ToBank
 	/// <summary>
 	/// Description of ComparerList.
 	/// </summary>
-	public class ComparerList : ComparerInterface
+	public class ComparerList : IComparer
 	{
 		public ComparerList(List<ComparerGeneric> comparerGenericList)
 		{

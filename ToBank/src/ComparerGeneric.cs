@@ -13,7 +13,7 @@ namespace ToBank
 	/// <summary>
 	/// Description of GenericComparer.
 	/// </summary>
-	public class ComparerGeneric : ComparerInterface 
+	public class ComparerGeneric : IComparer 
 	{
 		public ComparerGeneric(string input, string output)
 		{

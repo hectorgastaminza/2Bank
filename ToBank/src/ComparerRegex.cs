@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
  /// http://regexr.com/
  /// "JP|TR|AH|TF"
  /// http://www.dotnetperls.com/regex
+ /// Numeric : @"[1-9][0-9]*|0"
+ /// AlphaNumeric : @"[a-zA-Z0-9\s]*"
  /// </summary>
  /// <param name="str"></param>
  /// <returns></returns>
@@ -21,7 +23,7 @@ namespace ToBank
 	/// <summary>
 	/// Description of RegexComparer.
 	/// </summary>
-	public class ComparerRegex : ComparerInterface
+	public class ComparerRegex : IComparer
 	{
 		public ComparerRegex(string pattern)
 		{

@@ -13,7 +13,7 @@ namespace ToBank
 	/// <summary>
 	/// Description of ComparerInterface.
 	/// </summary>
-	public interface ComparerInterface
+	public interface IComparer
 	{
 		bool IsMatch(string value);
 		string GetString();
