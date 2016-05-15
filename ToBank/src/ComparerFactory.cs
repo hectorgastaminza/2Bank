@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Xml.Schema;
 
 namespace ToBank
 {
@@ -42,6 +43,11 @@ namespace ToBank
 				case eRegisterId.ID_Pago_Cuenta_Electronica:
 				case eRegisterId.ID_Pago_Tarjeta_titular:
 				case eRegisterId.ID_Pago_Tarjeta_segundo:
+					{
+						const string pattern = @"\d*";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;
+					}
 					break;
 				/* Numeric & " " & "-" & "()" */
 				case eRegisterId.ID_DomPart_Telefono:
@@ -52,6 +58,11 @@ namespace ToBank
 				case eRegisterId.ID_DomPartSdoTitular_Fax:
 				case eRegisterId.ID_DomLabSdoTitular_Telefono:
 				case eRegisterId.ID_DomLabSdoTitular_Fax:
+					{
+						const string pattern = @"[0-9 |+|(|)|-]{6,}";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;
+					}
 					break;
 				
 				/* AlphaNumeric */
@@ -68,6 +79,11 @@ namespace ToBank
 				case eRegisterId.ID_DomPartSdoTitular_Localidad:
 				case eRegisterId.ID_DomLabSdoTitular_Calle:
 				case eRegisterId.ID_DomLabSdoTitular_Localidad:
+					{
+						const string pattern = @"[a-zA-Z0-9\s]+";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;
+					}
 					break;
 				/* AlphaNumeric & "" */	
 				case eRegisterId.ID_DomPart_Piso:
@@ -81,10 +97,20 @@ namespace ToBank
 				case eRegisterId.ID_Convenio_Lecop:
 				case eRegisterId.ID_Ya_Existente:
 				case eRegisterId.ID_Filler:
+					{
+						const string pattern = @"[a-zA-Z0-9\s]*";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;
+					}				
 					break;
 				/* AlphaNumeric: Just "F" */
 				case eRegisterId.ID_DatosPersonales_Tipo_de_Persona:
 				case eRegisterId.ID_DatosSdoTitular_Tipo_de_Persona:
+					{
+						const string pattern = @"[F]*";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;				
+					}
 					break;
 				/* AlphaNumeric & "S/N" */	
 				case eRegisterId.ID_DomPart_Numero:
