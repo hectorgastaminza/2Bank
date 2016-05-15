@@ -24,5 +24,9 @@ namespace ToBank
 		/// Alphanumeric
 		/// </summary>
 		A,
+		/// <summary>
+		/// Custom format
+		/// </summary>
+		Custom,		
 	}
 }
