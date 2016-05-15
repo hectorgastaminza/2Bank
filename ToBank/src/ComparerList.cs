@@ -21,7 +21,7 @@ namespace ToBank
 			_comparerGenericList = comparerGenericList;
 		}
 		
-		bool IsMatch(string value)
+		public bool IsMatch(string value)
 		{
 			bool retval = false;
 			
@@ -38,7 +38,7 @@ namespace ToBank
 			return (retval);
 		}
 		
-		string GetString()
+		public string GetString()
 		{
 			string retval = string.Empty;
 			

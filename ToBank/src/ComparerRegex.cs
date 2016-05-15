@@ -30,7 +30,7 @@ namespace ToBank
 		
 		public bool IsMatch(string value)
 		{
-			Match myMatch = Regex.Match(input,pattern);
+			Match myMatch = Regex.Match(value, _pattern);
 			
 			if(myMatch.Success)
 			{
