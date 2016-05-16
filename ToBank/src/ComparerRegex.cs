@@ -8,6 +8,7 @@
  */
 using System;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
  /// <summary>
  /// http://regexr.com/
@@ -25,6 +26,18 @@ namespace ToBank
 	/// </summary>
 	public class ComparerRegex : IComparer
 	{
+		public ComparerRegex(String pattern, bool empty, List<string> commands)
+			:this(pattern,empty)
+		{
+			_commands = commands;
+		}
+		
+		public ComparerRegex(string pattern, bool empty)
+			:this(pattern)
+		{
+			_empty = empty;
+		}
+		
 		public ComparerRegex(string pattern)
 		{
 			_pattern = pattern;
@@ -32,14 +45,39 @@ namespace ToBank
 		
 		public bool IsMatch(string value)
 		{
-			Match myMatch = Regex.Match(value, _pattern);
+			bool retval = false;
 			
-			if(myMatch.Success)
+			if((_empty) && (string.IsNullOrEmpty(value)))
 			{
-				_output = myMatch.Value;
+			   	_output = string.Empty;
+			   	retval = true;
 			}
 			
-			return (myMatch.Success);
+			if(!retval && (_commands != null) && (_commands.Count >0))
+			{
+				foreach (string element in _commands) 
+				{
+					if(value.Contains(element))
+					{
+						_output = element;
+						retval = true;
+					}
+				}
+			}
+			
+			if(!retval)
+			{
+				Match myMatch = Regex.Match(value, _pattern);
+				
+				if(myMatch.Success)
+				{
+					_output = myMatch.Value;
+				}
+				
+				retval = myMatch.Success;
+			}
+			
+			return (retval);
 		}
 		
 		public string GetString()
@@ -49,5 +87,7 @@ namespace ToBank
 		
 		private string _pattern = string.Empty;
 		private string _output = string.Empty;
+		private bool _empty = false;
+		private List<string> _commands = null;
 	}
 }

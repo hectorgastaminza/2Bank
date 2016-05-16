@@ -23,7 +23,7 @@ namespace ToBank
 		
 		public bool IsMatch(string value)
 		{
-			return (value.Contains(_input));
+			return (value.Contains(_input) || value.Contains(_output));
 		}
 		
 		public string GetString()

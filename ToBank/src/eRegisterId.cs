@@ -20,7 +20,7 @@ namespace ToBank
 		ID_DatosBancarios_Proceso,
 		ID_DatosBancarios_Servicio,
 		ID_DatosBancarios_Sucursal,
-		ID_DatosBancarios_Código_de_Agente,
+		ID_DatosBancarios_Codigo_de_Agente,
 		ID_DatosBancarios_Moneda_de_la_Cuenta,
 		ID_DatosBancarios_Titularidad,
 		ID_DatosBancarios_Limite_de_Tarjeta,
