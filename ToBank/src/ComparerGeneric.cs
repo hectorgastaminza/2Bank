@@ -26,9 +26,14 @@ namespace ToBank
 			return (value.Contains(_input) || value.Contains(_output));
 		}
 		
-		public string GetString()
+		public string GetOutput()
 		{
 			return _output;
+		}
+		
+		public string GetComparer()
+		{
+			return (": " + _output + ". o :" + _input);
 		}
 		
 		private string _input = string.Empty;

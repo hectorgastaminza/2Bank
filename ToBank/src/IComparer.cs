@@ -16,6 +16,7 @@ namespace ToBank
 	public interface IComparer
 	{
 		bool IsMatch(string value);
-		string GetString();
+		string GetOutput();
+		string GetComparer();
 	}
 }

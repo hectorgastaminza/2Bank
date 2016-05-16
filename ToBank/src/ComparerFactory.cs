@@ -15,9 +15,9 @@ namespace ToBank
 	/// <summary>
 	/// Description of ComparerFactory.
 	/// </summary>
-	public class ComparerFactory
-	{
-		public IComparer CreateComparer(eRegisterId id)
+	static public class ComparerFactory
+	{	
+		static public IComparer CreateComparer(eRegisterId id)
 		{
 			IComparer retval = null;
 			
@@ -81,7 +81,7 @@ namespace ToBank
 				case eRegisterId.ID_DomLabSdoTitular_Calle:
 				case eRegisterId.ID_DomLabSdoTitular_Localidad:
 					{
-						const string pattern = @"[a-zA-Z0-9 .]*";
+						const string pattern = @"[a-zA-Z0-9 .-º]*";
 						ComparerRegex myComparer = new ComparerRegex(pattern);
 						retval = myComparer;
 					}
@@ -95,11 +95,10 @@ namespace ToBank
 				case eRegisterId.ID_DomPartSdoTitular_Departamento:
 				case eRegisterId.ID_DomLabSdoTitular_Piso:
 				case eRegisterId.ID_DomLabSdoTitular_Departamento:
-				case eRegisterId.ID_Convenio_Lecop:
-				case eRegisterId.ID_Ya_Existente:
+				case eRegisterId.ID_Convenio_Lecop:				
 				case eRegisterId.ID_Filler:
 					{
-						const string pattern = @"[a-zA-Z0-9 .]*";
+						const string pattern = @"[a-zA-Z0-9 .-º]*";
 						ComparerRegex myComparer = new ComparerRegex(pattern, true);
 						retval = myComparer;
 					}				
@@ -118,20 +117,24 @@ namespace ToBank
 				case eRegisterId.ID_DomLab_Numero:
 				case eRegisterId.ID_DomPartSdoTitular_Numero:
 				case eRegisterId.ID_DomLabSdoTitular_Numero:
-					{
+					{						
+						List<string> commands = new List<string>();
+						commands.Add(@"s/n");
+						commands.Add(@"S/N");
 						const string pattern = @"[a-zA-Z0-9 .]*";
-						ComparerRegex myComparer = new ComparerRegex(pattern, true);
-						retval = myComparer;				
+						ComparerRegex myComparer = new ComparerRegex(pattern, false, commands);						
+						retval = myComparer;
 					}
 					break;
 				
 				/* Custom */
 				case eRegisterId.ID_DatosBancarios_Proceso:
 					{
-						List<ComparerGeneric> auxList = new List<ComparerGeneric>();		
+						List<ComparerGeneric> auxList = new List<ComparerGeneric>();	
+						
 						auxList.Add(new ComparerGeneric("Jubilados Poderdantes" , "JP"));
 						auxList.Add(new ComparerGeneric("Uso Exclusivo del PAMI" , "TR"));
-						auxList.Add(new ComparerGeneric("Acreditacion de Haberes" , "AH."));
+						auxList.Add(new ComparerGeneric("Acreditacion de Haberes" , "AH"));
 						auxList.Add(new ComparerGeneric("Pagos a Terceros, Proveedores" , "TF"));						
 
 						ComparerList myComparer = new ComparerList(auxList);
@@ -356,6 +359,18 @@ namespace ToBank
 						retval = myComparer;
 					}					
 					break;					
+					
+				case eRegisterId.ID_Ya_Existente:
+					{
+						List<ComparerGeneric> auxList = new List<ComparerGeneric>();
+						
+						auxList.Add(new ComparerGeneric("CLIENTE YA EXISTENTE" , "S"));
+						auxList.Add(new ComparerGeneric("NO EXISTE" , ""));
+
+						ComparerList myComparer = new ComparerList(auxList);
+						retval = myComparer;
+					}					
+					break;	
 					
 				case eRegisterId.ID_DatosPersonales_Nacionalidad:
 				case eRegisterId.ID_DatosSdoTitular_Nacionalidad:					

@@ -47,43 +47,85 @@ namespace ToBank
 		{
 			bool retval = false;
 			
-			if((_empty) && (string.IsNullOrEmpty(value)))
+			if(string.IsNullOrEmpty(value))
 			{
-			   	_output = string.Empty;
-			   	retval = true;
-			}
-			
-			if(!retval && (_commands != null) && (_commands.Count >0))
-			{
-				foreach (string element in _commands) 
+				if(_empty)
 				{
-					if(value.Contains(element))
+				   	retval = true;					
+				}
+				_output = string.Empty;
+			}
+			else
+			{
+				if((_commands != null) && (_commands.Count >0))
+				{
+					foreach (string element in _commands) 
 					{
-						_output = element;
-						retval = true;
+						if(value.Contains(element))
+						{
+							_output = element;
+							retval = true;
+						}
 					}
 				}
-			}
-			
-			if(!retval)
-			{
-				Match myMatch = Regex.Match(value, _pattern);
 				
-				if(myMatch.Success)
+				if(!retval)
 				{
-					_output = myMatch.Value;
-				}
-				
-				retval = myMatch.Success;
+					Match myMatch = Regex.Match(value, _pattern);
+					
+					if(myMatch.Success)
+					{
+						_output = myMatch.Value;
+					}
+						
+					retval = myMatch.Success;				
+				}				
 			}
 			
 			return (retval);
 		}
 		
-		public string GetString()
+		public string GetOutput()
 		{
 			return _output;
 		}
+		
+		public string GetComparer()
+		{
+			System.Text.StringBuilder str_builder = new System.Text.StringBuilder();
+			bool nFirst = false;
+				
+			if(_empty)
+			{
+				str_builder.Append(": ");
+				nFirst = true;
+			}
+				
+			if((_commands != null) && (_commands.Count >0))
+			{
+				foreach (string element in _commands) 
+				{
+					if(nFirst)
+					{
+						str_builder.Append(". o ");
+					}
+					else
+					{
+						nFirst = true;
+					}
+								
+					str_builder.Append(": " + element);
+				}
+			}
+				
+			if(nFirst)
+			{
+				str_builder.Append(". o pattern: ");
+			}
+			str_builder.Append(_pattern + ".");
+			
+			return (str_builder.ToString());
+		}	
 		
 		private string _pattern = string.Empty;
 		private string _output = string.Empty;

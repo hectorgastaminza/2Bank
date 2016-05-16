@@ -38,17 +38,53 @@ namespace ToBank
 			return (retval);
 		}
 		
-		public string GetString()
+		public string GetOutput()
 		{
 			string retval = string.Empty;
 			
 			if(_comparerGeneric != null)				
 			{
-				retval = _comparerGeneric.GetString();
+				retval = _comparerGeneric.GetOutput();
 			}
 			
 			return (retval);
 		}
+		
+		public string GetComparer()
+		{
+			string retval = string.Empty;
+			
+			if(_comparerGeneric != null)
+			{
+				retval = _comparerGeneric.GetComparer();
+			}
+			else
+			{
+				if((_comparerGenericList != null) && (_comparerGenericList.Count > 0))
+				{
+					System.Text.StringBuilder str_builder = new System.Text.StringBuilder();					
+					bool nFirst = false;
+					
+					foreach (ComparerGeneric element in _comparerGenericList) 
+					{
+						if(nFirst) 
+						{
+							str_builder.Append("; o");
+						}
+						else
+						{
+							nFirst = true;
+						}
+							
+						str_builder.Append(element.GetComparer());
+					}
+						
+					retval = str_builder.ToString();				
+				}
+			}
+			
+			return (retval);
+		}		
 		
 		private List<ComparerGeneric> _comparerGenericList = null;
 		private ComparerGeneric _comparerGeneric = null;		

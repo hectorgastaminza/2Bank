@@ -80,6 +80,7 @@
     <Compile Include="src\ComparerGeneric.cs" />
     <Compile Include="src\GenericRegister.cs" />
     <Compile Include="src\ComparerRegex.cs" />
+    <Compile Include="test\Test-ComparerFactory.cs" />
     <Compile Include="test\Test-GenericRegister.cs" />
   </ItemGroup>
   <ItemGroup>
