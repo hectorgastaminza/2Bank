@@ -24,16 +24,11 @@ namespace ToBank
 			switch (id) 
 			{
 				/* Numeric */
-				case eRegisterId.ID_DatosBancarios_Sucursal:
 				case eRegisterId.ID_DatosBancarios_Codigo_de_Agente:
-				case eRegisterId.ID_DatosPersonales_Numero_de_Documento:
 				case eRegisterId.ID_DatosPersonales_Numero_Clave_Tributaria:
-				case eRegisterId.ID_DatosPersonales_Fecha_de_Nacimiento:
 				case eRegisterId.ID_DomPart_Codigo_Postal:
 				case eRegisterId.ID_DomLab_Codigo_Postal:
-				case eRegisterId.ID_DatosSdoTitular_Numero_de_Documento:
 				case eRegisterId.ID_DatosSdoTitular_Numero_Clave_Tributaria:
-				case eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento:
 				case eRegisterId.ID_DomPartSdoTitular_Codigo_Postal:
 				case eRegisterId.ID_DomLabSdoTitular_Codigo_Postal:
 				case eRegisterId.ID_CBU_Entidad:
@@ -45,11 +40,29 @@ namespace ToBank
 				case eRegisterId.ID_Pago_Tarjeta_titular:
 				case eRegisterId.ID_Pago_Tarjeta_segundo:
 					{
-						const string pattern = @"\d*";
+						const string pattern = @"\d+";
 						ComparerRegex myComparer = new ComparerRegex(pattern);
 						retval = myComparer;
 					}
 					break;
+				/* Numeric & {5,} */
+				case eRegisterId.ID_DatosSdoTitular_Numero_de_Documento:
+				case eRegisterId.ID_DatosPersonales_Numero_de_Documento:
+					{
+						const string pattern = @"[0-9]{5,}";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;
+					}
+					break;		
+				/* Numeric & {6,8} */
+				case eRegisterId.ID_DatosPersonales_Fecha_de_Nacimiento:
+				case eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento:
+					{
+						const string pattern = @"[0-9]{6,8}";
+						ComparerRegex myComparer = new ComparerRegex(pattern);
+						retval = myComparer;
+					}
+					break;					
 				/* Numeric & " " & "-" & "()" */
 				case eRegisterId.ID_DomPart_Telefono:
 				case eRegisterId.ID_DomPart_Fax:
@@ -61,7 +74,7 @@ namespace ToBank
 				case eRegisterId.ID_DomLabSdoTitular_Fax:
 					{
 						const string pattern = @"[0-9 +()-]{6,}";
-						ComparerRegex myComparer = new ComparerRegex(pattern);
+						ComparerRegex myComparer = new ComparerRegex(pattern, true);
 						retval = myComparer;
 					}
 					break;
@@ -107,7 +120,7 @@ namespace ToBank
 				case eRegisterId.ID_DatosPersonales_Tipo_de_Persona:
 				case eRegisterId.ID_DatosSdoTitular_Tipo_de_Persona:
 					{
-						const string pattern = @"[F]*";
+						const string pattern = @"[F]+";
 						ComparerRegex myComparer = new ComparerRegex(pattern);
 						retval = myComparer;				
 					}
@@ -121,13 +134,26 @@ namespace ToBank
 						List<string> commands = new List<string>();
 						commands.Add(@"s/n");
 						commands.Add(@"S/N");
-						const string pattern = @"[a-zA-Z0-9 .]*";
+						const string pattern = @"[a-zA-Z0-9 .]+";
 						ComparerRegex myComparer = new ComparerRegex(pattern, false, commands);						
 						retval = myComparer;
 					}
 					break;
 				
 				/* Custom */
+				case eRegisterId.ID_DatosBancarios_Sucursal:
+					{
+						List<ComparerGeneric> auxList = new List<ComparerGeneric>();	
+						
+						auxList.Add(new ComparerGeneric("BNA" , "0"));
+						auxList.Add(new ComparerGeneric("ANSES" , "1"));
+						auxList.Add(new ComparerGeneric("BCRA" , "2"));
+
+						ComparerList myComparer = new ComparerList(auxList);
+						retval = myComparer;
+					}
+					break;				
+				
 				case eRegisterId.ID_DatosBancarios_Proceso:
 					{
 						List<ComparerGeneric> auxList = new List<ComparerGeneric>();	
@@ -160,7 +186,7 @@ namespace ToBank
 						List<ComparerGeneric> auxList = new List<ComparerGeneric>();
 						
 						auxList.Add(new ComparerGeneric("Sola Firma" , "SF"));
-						auxList.Add(new ComparerGeneric("Orden reciproca" , "NR"));
+						auxList.Add(new ComparerGeneric("Orden reciproca" , "OR"));
 						
 						ComparerList myComparer = new ComparerList(auxList);
 						retval = myComparer;
@@ -286,7 +312,7 @@ namespace ToBank
 						
 						auxList.Add(new ComparerGeneric("Casado" , "C"));
 						auxList.Add(new ComparerGeneric("Convivencia" , "X"));
-						auxList.Add(new ComparerGeneric("Divorciado " , "D"));
+						auxList.Add(new ComparerGeneric("Divorciado" , "D"));
 						auxList.Add(new ComparerGeneric("Separado de Hecho" , "H"));
 						auxList.Add(new ComparerGeneric("Separado Legalmente" , "L"));
 						auxList.Add(new ComparerGeneric("Soltero" , "S"));
@@ -365,7 +391,7 @@ namespace ToBank
 						List<ComparerGeneric> auxList = new List<ComparerGeneric>();
 						
 						auxList.Add(new ComparerGeneric("CLIENTE YA EXISTENTE" , "S"));
-						auxList.Add(new ComparerGeneric("NO EXISTE" , ""));
+						auxList.Add(new ComparerGeneric("NO EXISTE" , "N"));
 
 						ComparerList myComparer = new ComparerList(auxList);
 						retval = myComparer;
@@ -379,7 +405,7 @@ namespace ToBank
 						
 						auxList.Add(new ComparerGeneric("Argentina" , "AR"));
 						auxList.Add(new ComparerGeneric("Bolivia" , "BV"));
-						auxList.Add(new ComparerGeneric("Brasil " , "BR"));
+						auxList.Add(new ComparerGeneric("Brasil" , "BR"));
 						auxList.Add(new ComparerGeneric("Chile" , "CH"));
 						auxList.Add(new ComparerGeneric("Colombia" , "CO"));
 						auxList.Add(new ComparerGeneric("Ecuador" , "EC"));

@@ -21,7 +21,6 @@ namespace ToBank.test
 		public void TestMethod()
 		{
 			// TODO: Add your test.
-			Assert.Fail("TO-DO");
 		}
 	}
 }
