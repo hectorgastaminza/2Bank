@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using excel;
 
 namespace ToBank
 {
@@ -28,6 +29,9 @@ namespace ToBank
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			FileExcel _excel = new FileExcel();
+			_excel.ExcelOpenSpreadsheets(@"D:\GoogleDrive\Desarrollo\Altas y Pagos.xlsx");
+			
 		}
 	}
 }

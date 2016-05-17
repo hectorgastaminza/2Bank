@@ -47,6 +47,7 @@
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel" />
     <Reference Include="NUnit.Framework">
       <HintPath>$(SharpDevelopBinPath)\Tools\NUnit\NUnit.Framework.dll</HintPath>
     </Reference>
@@ -80,6 +81,7 @@
     <Compile Include="src\ComparerGeneric.cs" />
     <Compile Include="src\GenericRegister.cs" />
     <Compile Include="src\ComparerRegex.cs" />
+    <Compile Include="src\IO\FileExcel.cs" />
     <Compile Include="test\Test-ComparerFactory.cs" />
     <Compile Include="test\Test-GenericRegister.cs" />
   </ItemGroup>
@@ -87,6 +89,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\IO" />
     <Folder Include="test" />
     <Folder Include="src" />
   </ItemGroup>
