@@ -90,10 +90,13 @@ namespace excel
 				// values. See notes about compatibility.
 				//
 				Range excelRange = sheet.UsedRange;
-				object[,] valueArray = (object[,])excelRange.get_Value(
-					XlRangeValueDataType.xlRangeValueDefault);
+				object[,] valueArray = (object[,])excelRange.get_Value();
+					//XlRangeValueDataType.xlRangeValueDefault);
+				
+				// Desde A:10 hasta BS:100, 71 columnas
 				
 				foreach (object element in valueArray) {
+					
 					
 				}
 				
