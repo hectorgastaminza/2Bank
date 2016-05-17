@@ -8,31 +8,54 @@
  */
 using System;
 using Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
 
 /// <summary>
 /// http://www.dotnetperls.com/excel
 /// </summary>
-namespace excel
+namespace App.IO
 {
 	/// <summary>
 	/// Description of ExcelWraper.
 	/// </summary>
-	public class FileExcel
+	public class FileExcel : FileGeneric
 	{
-		Application _excelApp;
+		private Application _excelApp = null;
+		private List<object[,]> _sheets = null;
 		
 		public FileExcel()
+			:base()
 		{
+			List<FileFilter> listFileFilter = new List<FileFilter>();
+			listFileFilter.Add(new FileFilter("excel", "*.xlsx"));
+			listFileFilter.Add(new FileFilter("excel", "*.xls"));
+            listFileFilter.Add(new FileFilter("all", "*.*"));
+            this.GenerateFilter(listFileFilter);			
+			
 			_excelApp = new Application();
 		}
+		
+        /// <summary>
+        /// Open a text file
+        /// </summary>
+        /// <returns>List of string which contain the file information</returns>
+        public bool Open()
+        {
+            if (!this.Show(new System.Windows.Forms.OpenFileDialog()))
+                return false;
+            else
+                return ExcelOpenSpreadsheets(file);
+        }
 		
 		/// <summary>
 		/// Open the file path received in Excel. Then, open the workbook
 		/// within the file. Send the workbook to the next function, the internal scan
 		/// function. Will throw an exception if a file cannot be found or opened.
 		/// </summary>
-		public void ExcelOpenSpreadsheets(string thisFileName)
+		public bool ExcelOpenSpreadsheets(string thisFileName)
 		{
+			bool retval = false;
+			
 			try
 			{
 				//
@@ -56,13 +79,17 @@ namespace excel
 				//
 				workBook.Close(false, thisFileName, null);
 				System.Runtime.InteropServices.Marshal.ReleaseComObject(workBook);
+				
+				retval = true;
 			}
-			catch
+			catch(Exception ex)
 			{
 				//
 				// Deal with exceptions.
 				//
 			}
+			
+			return (retval);
 		}
 		
 		/// <summary>
@@ -77,6 +104,8 @@ namespace excel
 			//
 			int numSheets = workBookIn.Sheets.Count;
 			
+			_sheets = new List<object[,]>(numSheets);
+			
 			//
 			// Iterate through the sheets. They are indexed starting at 1.
 			//
@@ -90,15 +119,10 @@ namespace excel
 				// values. See notes about compatibility.
 				//
 				Range excelRange = sheet.UsedRange;
-				object[,] valueArray = (object[,])excelRange.get_Value();
-					//XlRangeValueDataType.xlRangeValueDefault);
+				object[,] valueArray = (object[,])excelRange.get_Value(XlRangeValueDataType.xlRangeValueDefault);
+				_sheets.Insert(sheetNum - 1, valueArray);
 				
-				// Desde A:10 hasta BS:100, 71 columnas
-				
-				foreach (object element in valueArray) {
-					
-					
-				}
+				// Desde A:10 hasta BS:100, 71 columnas				
 				
 				//
 				// Do something with the data in the array with a custom method.
@@ -106,6 +130,24 @@ namespace excel
 				//ProcessObjects(valueArray);
 			}
 		}
-		
+
+		/// <summary>
+		/// Gets the sheet number received by param
+		/// </summary>
+		/// <param name="number"></param>
+		/// <returns></returns>
+		public object[,] GetSheet(int number)
+		{
+			object[,] retval = null;
+			
+			number--;
+					
+			if(number < _sheets.Count)
+			{
+				retval = _sheets[number];
+			}
+			
+			return (retval);
+		}
 	}
 }

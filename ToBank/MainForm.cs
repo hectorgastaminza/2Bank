@@ -7,10 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using excel;
+using App.IO;
 
 namespace ToBank
 {
@@ -29,9 +27,23 @@ namespace ToBank
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			FileExcel _excel = new FileExcel();
-			_excel.ExcelOpenSpreadsheets(@"D:\GoogleDrive\Desarrollo\Altas y Pagos.xlsx");
-			
 		}
+		
+		void BtnOpenExcelClick(object sender, EventArgs e)
+		{
+			_excel = new FileExcel();
+			bool result = _excel.Open();
+			System.Windows.Forms.MessageBox.Show("prueba: " + result.ToString());
+		}
+		void BtnPagosClick(object sender, EventArgs e)
+		{
+	
+		}
+		void BtnAltasClick(object sender, EventArgs e)
+		{
+	
+		}
+		
+		FileExcel _excel;
 	}
 }

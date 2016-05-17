@@ -15,18 +15,10 @@ namespace ToBank
 	/// </summary>
 	public enum eRegisterFormat
 	{
-		Undefined = 0,
+		PadLeft = 0,
 		/// <summary>
 		/// Numeric
 		/// </summary>
-		Numeric,
-		/// <summary>
-		/// Alphanumeric
-		/// </summary>
-		AlphaNumeric,
-		/// <summary>
-		/// Custom format
-		/// </summary>
-		Custom,		
+		PadRight,
 	}
 }

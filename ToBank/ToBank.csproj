@@ -82,6 +82,9 @@
     <Compile Include="src\GenericRegister.cs" />
     <Compile Include="src\ComparerRegex.cs" />
     <Compile Include="src\IO\FileExcel.cs" />
+    <Compile Include="src\IO\FileFilter.cs" />
+    <Compile Include="src\IO\FileGeneric.cs" />
+    <Compile Include="src\IO\FileText.cs" />
     <Compile Include="test\Test-ComparerFactory.cs" />
     <Compile Include="test\Test-GenericRegister.cs" />
   </ItemGroup>
@@ -92,6 +95,11 @@
     <Folder Include="src\IO" />
     <Folder Include="test" />
     <Folder Include="src" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
