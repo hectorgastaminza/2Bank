@@ -91,6 +91,7 @@
     <Compile Include="src\Register\eRegisterFormat.cs" />
     <Compile Include="src\Register\eRegisterId.cs" />
     <Compile Include="src\Register\GenericRegister.cs" />
+    <Compile Include="src\View\AppLog.cs" />
     <Compile Include="test\Test-ComparerFactory.cs" />
     <Compile Include="test\Test-GenericRegister.cs" />
   </ItemGroup>
@@ -101,6 +102,7 @@
     <Folder Include="src\IO" />
     <Folder Include="src\Comparer" />
     <Folder Include="src\Model" />
+    <Folder Include="src\View" />
     <Folder Include="src\Register" />
     <Folder Include="test" />
     <Folder Include="src" />

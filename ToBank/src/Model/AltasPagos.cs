@@ -126,9 +126,6 @@ namespace App.Model
 		{
 			List<string> retval = new List<string>();
 			List<GenericRegister> _registers = new List<GenericRegister>();
-
-			/* Obtengo las filas */
-			retval = GetData(_registers, _excel.GetSheet(PAGE_PAGOS));
 			
 			/* Genero la lista de registros de pago */
 			/* Datos bancarios */
@@ -154,7 +151,10 @@ namespace App.Model
 			_registers.Add(new GenericRegister(eRegisterId.ID_DatosPersonales_Tipo_de_Documento, 2, 113, 114, eRegisterFormat.PadRight, ' '));
 			_registers.Add(new GenericRegister(eRegisterId.ID_DatosPersonales_Numero_de_Documento, 11, 115, 125, eRegisterFormat.PadLeft, '0'));
 			_registers.Add(new GenericRegister(eRegisterId.ID_Filler, 5, 126, 130, eRegisterFormat.PadRight, ' '));
-						
+			
+			/* Obtengo las filas */
+			retval = GetData(_registers, _excel.GetSheet(PAGE_PAGOS));
+			
 			return (retval);			
 		}
 		

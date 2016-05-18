@@ -29,94 +29,58 @@ namespace App
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			_Log = new App.View.AppLog();
 			_altasPagos = new App.Model.AltasPagos();
 		}
 		
 		void BtnOpenExcelClick(object sender, EventArgs e)
 		{
-			_result = _altasPagos.OpenInput();
+			try {
+				_result = _altasPagos.OpenInput();
+			} catch (Exception ex) {
+				
+				_Log.HandlerException(ex);
+			}
 		}
 		
 		void BtnPagosClick(object sender, EventArgs e)
 		{
-			if(_result)
-			{
-				List<string> datos = _altasPagos.GetPagos();
-				if(datos != null)
+			try {
+				if(_result)
 				{
-					App.IO.FileText file = new FileText();
-					file.Save(datos);
+					List<string> datos = _altasPagos.GetPagos();
+					if(datos != null)
+					{
+						App.IO.FileText file = new FileText();
+						file.Save(datos);
+					}
 				}
-			}
+			} catch (Exception ex) {
+				
+				_Log.HandlerException(ex);
+			}			
 		}
 		
 		void BtnAltasClick(object sender, EventArgs e)
 		{
-			if(_result)
-			{
-				List<string> datos = _altasPagos.GetAltas();
-				if(datos != null)
+			try {			
+				if(_result)
 				{
-					App.IO.FileText file = new FileText();
-					file.Save(datos);
+					List<string> datos = _altasPagos.GetAltas();
+					if(datos != null)
+					{
+						App.IO.FileText file = new FileText();
+						file.Save(datos);
+					}
 				}
-			}
-		}		
+			} catch (Exception ex) {
+				
+				_Log.HandlerException(ex);
+			}				
+		}	
 		
 		private bool _result = false;
 		private App.Model.AltasPagos _altasPagos = null;
-
-		
-		/*
-		
-		#region Handler_Exception
-
-        private void HandlerException(Exception ex)
-        {
-            LogEvent("App: " + ex.Message + " - " + ex.StackTrace);
-        }
-
-        #endregion Handler_Exception
-
-
-        #region Log
-
-        List<App.IO.FileLog> _Logs = new List<App.IO.FileLog>();
-        App.IO.FileLog _Log = new App.IO.FileLog();
-
-        private void LogInit()
-        {
-            string _LogPath = LogPath();
-
-            if (!System.IO.Directory.Exists(_LogPath))
-                System.IO.Directory.CreateDirectory(_LogPath);
-
-            _Log.Path = _LogPath;
-        }
-
-        private void tsmiOpenLogFolder_Click(object sender, EventArgs e)
-        {
-            if (_Log != null)
-            {
-                System.Diagnostics.Process.Start(LogPath());
-            }
-        }
-
-        private static string LogPath()
-        {
-            return System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Log\";
-        }
-
-        private void LogEvent(string myEvent)
-        {
-            if (_Log != null)
-            {
-                _Log.Log_Event(myEvent);
-            }
-        }
-
-        #endregion Log		
-		
-		*/
+		private App.View.AppLog _Log = null;
 	}
 }
