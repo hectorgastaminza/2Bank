@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 /// <summary>
 /// http://www.dotnetperls.com/excel
+/// https://msdn.microsoft.com/en-us/library/15s06t57%28v=vs.100%29.aspx
+/// Microsoft Office 2010: Primary Interop Assemblies Redistributable
+/// https://www.microsoft.com/en-us/download/details.aspx?id=3508
 /// </summary>
 namespace App.IO
 {
@@ -87,6 +90,7 @@ namespace App.IO
 				//
 				// Deal with exceptions.
 				//
+				throw(ex);
 			}
 			
 			return (retval);

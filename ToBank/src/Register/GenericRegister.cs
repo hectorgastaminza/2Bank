@@ -36,7 +36,7 @@ namespace App.Register
 			_Id = id;
 			_length = lenght;
 			_start = start;
-			_start = end;
+			_end = end;
 			_format = format;
 			_pad = filler;
 			
