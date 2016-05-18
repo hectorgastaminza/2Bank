@@ -6,6 +6,12 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+ 
+ /// <summary>
+ /// Define si se utilizara el CBU en una sola columna o siete
+ /// </summary>
+ #define CBU_COMPLETO
+ 
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -135,15 +141,24 @@ namespace App.Model
 			_registers.Add(new GenericRegister(eRegisterId.ID_DatosBancarios_Codigo_de_Agente, 20, 11, 30, eRegisterFormat.PadLeft, '0'));
 			_registers.Add(new GenericRegister(eRegisterId.ID_DatosBancarios_Moneda_de_la_Cuenta, 1, 31, 31, eRegisterFormat.PadRight, ' '));
 			_registers.Add(new GenericRegister(eRegisterId.ID_DatosBancarios_Titularidad, 2, 32, 33, eRegisterFormat.PadRight, ' '));
-			/* CBU. Bloque 1 */
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Entidad, 3, 34, 36, eRegisterFormat.PadLeft, '0'));
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Sucursal, 4, 37, 40, eRegisterFormat.PadLeft, '0'));
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Verificador_B1, 1, 41, 41, eRegisterFormat.PadLeft, '0'));
-			/* CBU. Bloque 2 */
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Tipo_Cuenta, 1, 42, 42, eRegisterFormat.PadLeft, '0'));
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Moneda_Cuenta, 1, 43, 43, eRegisterFormat.PadLeft, '0'));
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Numero_Cuenta, 11, 44, 54, eRegisterFormat.PadLeft, '0'));
-			_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Verificador_B2, 1, 55, 55, eRegisterFormat.PadLeft, '0'));
+			#if(CBU_COMPLETO)
+			{
+				/* CBU COMPLETO */
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_COMPLETO, 22, 34, 55, eRegisterFormat.PadLeft, '0'));
+			}
+			#else
+			{
+				/* CBU. Bloque 1 */
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Entidad, 3, 34, 36, eRegisterFormat.PadLeft, '0'));
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Sucursal, 4, 37, 40, eRegisterFormat.PadLeft, '0'));
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Verificador_B1, 1, 41, 41, eRegisterFormat.PadLeft, '0'));
+				/* CBU. Bloque 2 */
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Tipo_Cuenta, 1, 42, 42, eRegisterFormat.PadLeft, '0'));
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Moneda_Cuenta, 1, 43, 43, eRegisterFormat.PadLeft, '0'));
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Numero_Cuenta, 11, 44, 54, eRegisterFormat.PadLeft, '0'));
+				_registers.Add(new GenericRegister(eRegisterId.ID_CBU_Verificador_B2, 1, 55, 55, eRegisterFormat.PadLeft, '0'));
+			}
+			#endif
 			/* Otros */
 			_registers.Add(new GenericRegister(eRegisterId.ID_Pago_Cuenta_Electronica, 19, 56, 74, eRegisterFormat.PadLeft, '0'));
 			_registers.Add(new GenericRegister(eRegisterId.ID_Pago_Tarjeta_titular, 19, 75, 93, eRegisterFormat.PadLeft, '0'));
@@ -155,7 +170,7 @@ namespace App.Model
 			/* Obtengo las filas */
 			retval = GetData(_registers, _excel.GetSheet(PAGE_PAGOS));
 			
-			return (retval);			
+			return (retval);
 		}
 		
 		
@@ -186,13 +201,13 @@ namespace App.Model
 						if(!string.IsNullOrEmpty(aux_strbuilder))
 						{
 							retval.Add(aux_strbuilder);
-						}						
+						}
 					}
 				}
 			}
 
 			return (retval);
-		}	
+		}
 
 		
 		private FileExcel _excel;

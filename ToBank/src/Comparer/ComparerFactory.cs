@@ -36,6 +36,7 @@ namespace App.Comparer
 				case eRegisterId.ID_CBU_Verificador_B1:
 				case eRegisterId.ID_CBU_Numero_Cuenta:
 				case eRegisterId.ID_CBU_Verificador_B2:
+				case eRegisterId.ID_CBU_COMPLETO:
 				case eRegisterId.ID_Pago_Cuenta_Electronica:
 				case eRegisterId.ID_Pago_Tarjeta_titular:
 				case eRegisterId.ID_Pago_Tarjeta_segundo:

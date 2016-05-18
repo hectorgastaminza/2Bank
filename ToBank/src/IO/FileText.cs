@@ -100,7 +100,21 @@ namespace App.IO
         /// Save a text file
         /// </summary>
         /// <param name="lines">List of strings which contain the information to save in a file</param>
-        public void Save(List<string> lines)
+        public void SaveDialog(List<string> lines, string filename)
+        {
+        	SaveFileDialog dialog = new SaveFileDialog();
+        	dialog.FileName = filename;
+            if (!this.Show(dialog))
+                return;
+            else
+                Save(file, lines);
+        }
+        
+        /// <summary>
+        /// Save a text file
+        /// </summary>
+        /// <param name="lines">List of strings which contain the information to save in a file</param>
+        public void SaveDialog(List<string> lines)
         {
             if (!this.Show(new SaveFileDialog()))
                 return;

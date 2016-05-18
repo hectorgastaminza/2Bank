@@ -95,6 +95,7 @@ namespace App.Register
 		ID_Ya_Existente,
 		ID_Filler,
 		/* Pagos */
+		ID_CBU_COMPLETO,		
 		ID_CBU_Entidad,
 		ID_CBU_Sucursal,
 		ID_CBU_Verificador_B1,
@@ -104,6 +105,6 @@ namespace App.Register
 		ID_CBU_Verificador_B2,
 		ID_Pago_Cuenta_Electronica,
 		ID_Pago_Tarjeta_titular,
-		ID_Pago_Tarjeta_segundo,		
+		ID_Pago_Tarjeta_segundo,
 	}
 }

@@ -51,8 +51,11 @@ namespace App
 					List<string> datos = _altasPagos.GetPagos();
 					if(datos != null)
 					{
-						App.IO.FileText file = new FileText();
-						file.Save(datos);
+			            List<FileFilter> listFileFilter = new List<FileFilter>();
+			            listFileFilter.Add(new FileFilter("txt", "*.txt"));						
+						App.IO.FileText file = new FileText(listFileFilter);
+						
+						file.SaveDialog(datos, "SUELDOS.txt");
 					}
 				}
 			} catch (Exception ex) {
@@ -69,8 +72,11 @@ namespace App
 					List<string> datos = _altasPagos.GetAltas();
 					if(datos != null)
 					{
-						App.IO.FileText file = new FileText();
-						file.Save(datos);
+			            List<FileFilter> listFileFilter = new List<FileFilter>();
+			            listFileFilter.Add(new FileFilter("txt", "*.txt"));						
+						App.IO.FileText file = new FileText(listFileFilter);
+						
+						file.SaveDialog(datos, "AMALTAS.txt");
 					}
 				}
 			} catch (Exception ex) {
