@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ToBank
+namespace App.Comparer
 {
 	/// <summary>
 	/// Description of ComparerList.

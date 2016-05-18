@@ -8,9 +8,9 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Xml.Schema;
+using App.Register;
 
-namespace ToBank
+namespace App.Comparer
 {
 	/// <summary>
 	/// Description of ComparerFactory.
@@ -36,6 +36,7 @@ namespace ToBank
 				case eRegisterId.ID_CBU_Verificador_B1:
 				case eRegisterId.ID_CBU_Numero_Cuenta:
 				case eRegisterId.ID_CBU_Verificador_B2:
+				case eRegisterId.ID_CBU_COMPLETO:
 				case eRegisterId.ID_Pago_Cuenta_Electronica:
 				case eRegisterId.ID_Pago_Tarjeta_titular:
 				case eRegisterId.ID_Pago_Tarjeta_segundo:
@@ -54,15 +55,6 @@ namespace ToBank
 						retval = myComparer;
 					}
 					break;		
-				/* Numeric & {6,8} */
-				case eRegisterId.ID_DatosPersonales_Fecha_de_Nacimiento:
-				case eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento:
-					{
-						const string pattern = @"[0-9]{6,8}";
-						ComparerRegex myComparer = new ComparerRegex(pattern);
-						retval = myComparer;
-					}
-					break;					
 				/* Numeric & " " & "-" & "()" */
 				case eRegisterId.ID_DomPart_Telefono:
 				case eRegisterId.ID_DomPart_Fax:
@@ -79,6 +71,15 @@ namespace ToBank
 					}
 					break;
 				
+				/* Dates */
+				case eRegisterId.ID_DatosPersonales_Fecha_de_Nacimiento:
+				case eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento:
+					{
+						ComparerDate myComparer = new ComparerDate();
+						retval = myComparer;
+					}
+					break;										
+					
 				/* AlphaNumeric */
 				case eRegisterId.ID_DatosBancarios_Servicio:
 				case eRegisterId.ID_DatosPersonales_Apellido:

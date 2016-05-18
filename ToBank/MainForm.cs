@@ -7,17 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using App.IO;
 
-namespace ToBank
+
+namespace App
 {
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
 	public partial class MainForm : Form
-	{
+	{		
 		public MainForm()
 		{
 			//
@@ -28,6 +29,64 @@ namespace ToBank
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			_Log = new App.View.AppLog();
+			_altasPagos = new App.Model.AltasPagos();
 		}
+		
+		void BtnOpenExcelClick(object sender, EventArgs e)
+		{
+			try {
+				_result = _altasPagos.OpenInput();
+			} catch (Exception ex) {
+				
+				_Log.HandlerException(ex);
+			}
+		}
+		
+		void BtnPagosClick(object sender, EventArgs e)
+		{
+			try {
+				if(_result)
+				{
+					List<string> datos = _altasPagos.GetPagos();
+					if(datos != null)
+					{
+			            List<FileFilter> listFileFilter = new List<FileFilter>();
+			            listFileFilter.Add(new FileFilter("txt", "*.txt"));						
+						App.IO.FileText file = new FileText(listFileFilter);
+						
+						file.SaveDialog(datos, "SUELDOS.txt");
+					}
+				}
+			} catch (Exception ex) {
+				
+				_Log.HandlerException(ex);
+			}			
+		}
+		
+		void BtnAltasClick(object sender, EventArgs e)
+		{
+			try {			
+				if(_result)
+				{
+					List<string> datos = _altasPagos.GetAltas();
+					if(datos != null)
+					{
+			            List<FileFilter> listFileFilter = new List<FileFilter>();
+			            listFileFilter.Add(new FileFilter("txt", "*.txt"));						
+						App.IO.FileText file = new FileText(listFileFilter);
+						
+						file.SaveDialog(datos, "AMALTAS.txt");
+					}
+				}
+			} catch (Exception ex) {
+				
+				_Log.HandlerException(ex);
+			}				
+		}	
+		
+		private bool _result = false;
+		private App.Model.AltasPagos _altasPagos = null;
+		private App.View.AppLog _Log = null;
 	}
 }

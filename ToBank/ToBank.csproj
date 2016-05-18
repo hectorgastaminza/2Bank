@@ -47,6 +47,10 @@
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>C:\Windows\assembly\GAC\Microsoft.Office.Interop.Excel\12.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NUnit.Framework">
       <HintPath>$(SharpDevelopBinPath)\Tools\NUnit\NUnit.Framework.dll</HintPath>
     </Reference>
@@ -72,14 +76,22 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\ComparerFactory.cs" />
-    <Compile Include="src\IComparer.cs" />
-    <Compile Include="src\ComparerList.cs" />
-    <Compile Include="src\eRegisterFormat.cs" />
-    <Compile Include="src\eRegisterId.cs" />
-    <Compile Include="src\ComparerGeneric.cs" />
-    <Compile Include="src\GenericRegister.cs" />
-    <Compile Include="src\ComparerRegex.cs" />
+    <Compile Include="src\Comparer\ComparerDate.cs" />
+    <Compile Include="src\Comparer\ComparerFactory.cs" />
+    <Compile Include="src\Comparer\ComparerGeneric.cs" />
+    <Compile Include="src\Comparer\ComparerList.cs" />
+    <Compile Include="src\Comparer\ComparerRegex.cs" />
+    <Compile Include="src\Comparer\IComparer.cs" />
+    <Compile Include="src\IO\FileExcel.cs" />
+    <Compile Include="src\IO\FileFilter.cs" />
+    <Compile Include="src\IO\FileGeneric.cs" />
+    <Compile Include="src\IO\FileLog.cs" />
+    <Compile Include="src\IO\FileText.cs" />
+    <Compile Include="src\Model\AltasPagos.cs" />
+    <Compile Include="src\Register\eRegisterFormat.cs" />
+    <Compile Include="src\Register\eRegisterId.cs" />
+    <Compile Include="src\Register\GenericRegister.cs" />
+    <Compile Include="src\View\AppLog.cs" />
     <Compile Include="test\Test-ComparerFactory.cs" />
     <Compile Include="test\Test-GenericRegister.cs" />
   </ItemGroup>
@@ -87,8 +99,18 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\IO" />
+    <Folder Include="src\Comparer" />
+    <Folder Include="src\Model" />
+    <Folder Include="src\View" />
+    <Folder Include="src\Register" />
     <Folder Include="test" />
     <Folder Include="src" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

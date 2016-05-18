@@ -19,7 +19,7 @@ using System.Collections.Generic;
  /// </summary>
  /// <param name="str"></param>
  /// <returns></returns>
-namespace ToBank
+namespace App.Comparer
 {
 	/// <summary>
 	/// Description of RegexComparer.
