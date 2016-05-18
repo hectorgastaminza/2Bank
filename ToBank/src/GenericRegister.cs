@@ -30,7 +30,7 @@ namespace ToBank
 		private bool _opcional = false;
 		private DelegateRegisterOpcionalCheck RegisterOpcionalCheck = null;
 		
-		public GenericRegister(eRegisterId id, uint lenght, uint start, uint end, eRegisterFormat format, char filler)			
+		public GenericRegister(eRegisterId id, uint lenght, uint start, uint end, eRegisterFormat format, char filler)
 		{
 			_Id = id;
 			_length = lenght;
@@ -55,7 +55,7 @@ namespace ToBank
 		{
 			string retval = string.Empty;
 			
-			if(_Comparer.IsMatch(input))
+			if((_Id != eRegisterId.ID_Filler) && (_Comparer.IsMatch(input)))
 			{
 				retval = _Comparer.GetOutput();
 			}
@@ -71,11 +71,14 @@ namespace ToBank
 			}
 			else
 			{
-				// Padding	
-				if(_format == eRegisterFormat.PadRight)
-					retval = retval.PadRight((int)_length, _pad);
-				else
-					retval = retval.PadLeft((int)_length, _pad);
+				if(retval.Length < _length)
+				{
+					// Padding
+					if(_format == eRegisterFormat.PadRight)
+						retval = retval.PadRight((int)_length, _pad);
+					else
+						retval = retval.PadLeft((int)_length, _pad);
+				}
 			}
 			
 			return (retval);
