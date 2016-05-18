@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace ToBank
+namespace App.Comparer
 {
 	/// <summary>
 	/// Description of GenericComparer.

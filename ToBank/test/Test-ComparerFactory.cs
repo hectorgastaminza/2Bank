@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using NUnit.Framework;
+using App.Register;
 
 namespace ToBank.test
 {
@@ -18,7 +19,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosBancarios_Proceso()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Proceso);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Proceso);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
 
@@ -36,7 +37,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosBancarios_Servicio()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Servicio);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Servicio);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsTrue(comparer.IsMatch("gato"));
 			Assert.IsTrue(comparer.IsMatch("1234"));
@@ -47,7 +48,7 @@ namespace ToBank.test
 		public void Test_ID_DatosBancarios_Sucursal()
 		{
 			// TODO: Add your test.
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Sucursal);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Sucursal);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
 			
@@ -63,7 +64,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosBancarios_Codigo_de_Agente()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Codigo_de_Agente);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Codigo_de_Agente);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
 
@@ -75,7 +76,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosBancarios_Moneda_de_la_Cuenta()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Moneda_de_la_Cuenta);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Moneda_de_la_Cuenta);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
 			Assert.IsFalse(comparer.IsMatch("2"));
@@ -92,7 +93,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosBancarios_Titularidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Titularidad);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Titularidad);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
 			Assert.IsFalse(comparer.IsMatch("2"));
@@ -109,7 +110,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosBancarios_Limite_de_Tarjeta()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Limite_de_Tarjeta);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Limite_de_Tarjeta);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
 			
@@ -134,18 +135,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Tipo_de_Persona()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Tipo_de_Persona);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Tipo_de_Persona);			
 			Test_Personas_Fisicas(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Tipo_de_Persona()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Tipo_de_Persona);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Tipo_de_Persona);			
 			Test_Personas_Fisicas(comparer);
 		}		
 		
-		public void Test_Personas_Fisicas(IComparer comparer)
+		public void Test_Personas_Fisicas(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
@@ -157,30 +158,30 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Apellido()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Apellido);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Apellido);			
 			Test_Nombre(comparer);
 		}	
 		[Test]
 		public void Test_ID_DatosSdoTitular_Apellido()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Apellido);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Apellido);			
 			Test_Nombre(comparer);
 		}		
 
 		[Test]
 		public void Test_ID_DatosPersonales_Nombre()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Nombre);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Nombre);			
 			Test_Nombre(comparer);
 		}	
 		[Test]
 		public void Test_ID_DatosSdoTitular_Nombre()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Nombre);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Nombre);			
 			Test_Nombre(comparer);
 		}			
 		
-		public void Test_Nombre(IComparer comparer)
+		public void Test_Nombre(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			
@@ -194,18 +195,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Tipo_de_Documento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Tipo_de_Documento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Tipo_de_Documento);			
 			Test_TipoDocumento(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Tipo_de_Documento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Tipo_de_Documento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Tipo_de_Documento);			
 			Test_TipoDocumento(comparer);
 		}		
 		
-		public void Test_TipoDocumento(IComparer comparer)
+		public void Test_TipoDocumento(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("Cedula"));
@@ -227,18 +228,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Numero_de_Documento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Numero_de_Documento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Numero_de_Documento);			
 			Test_NumeroDocumento(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Numero_de_Documento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Numero_de_Documento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Numero_de_Documento);			
 			Test_NumeroDocumento(comparer);
 		}		
 		
-		public void Test_NumeroDocumento(IComparer comparer)
+		public void Test_NumeroDocumento(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));			
@@ -251,18 +252,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Posicion_ante_el_IVA()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Posicion_ante_el_IVA);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Posicion_ante_el_IVA);			
 			Test_Posicion_ante_el_IVA(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Posicion_ante_el_IVA()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Posicion_ante_el_IVA);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Posicion_ante_el_IVA);			
 			Test_Posicion_ante_el_IVA(comparer);
 		}		
 		
-		public void Test_Posicion_ante_el_IVA(IComparer comparer)
+		public void Test_Posicion_ante_el_IVA(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));			
@@ -288,18 +289,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Tipo_Clave_Tributaria()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Tipo_Clave_Tributaria);						
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Tipo_Clave_Tributaria);						
 			Test_Tipo_Claver_Tributaria(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Tipo_Clave_Tributaria()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Tipo_Clave_Tributaria);						
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Tipo_Clave_Tributaria);						
 			Test_Tipo_Claver_Tributaria(comparer);
 		}		
 		
-		public void Test_Tipo_Claver_Tributaria(IComparer comparer)
+		public void Test_Tipo_Claver_Tributaria(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));			
@@ -321,18 +322,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Fecha_de_Nacimiento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Fecha_de_Nacimiento);						
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Fecha_de_Nacimiento);						
 			Test_Fecha_de_Nacimiento(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Fecha_de_Nacimiento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento);						
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento);						
 			Test_Fecha_de_Nacimiento(comparer);
 		}		
 
-		public void Test_Fecha_de_Nacimiento(IComparer comparer)
+		public void Test_Fecha_de_Nacimiento(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));			
@@ -347,18 +348,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Nacionalidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Nacionalidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Nacionalidad);			
 			Test_Nacionalidad(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Nacionalidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Nacionalidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Nacionalidad);			
 			Test_Nacionalidad(comparer);
 		}		
 		
-		public void Test_Nacionalidad(IComparer comparer)
+		public void Test_Nacionalidad(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));			
@@ -378,18 +379,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Sexo()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Sexo);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Sexo);
 			Test_Sexo(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Sexo()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Sexo);
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Sexo);
 			Test_Sexo(comparer);
 		}		
 		
-		public void Test_Sexo(IComparer comparer)
+		public void Test_Sexo(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));
@@ -404,18 +405,18 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DatosPersonales_Estado_Civil()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Estado_Civil);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosPersonales_Estado_Civil);			
 			Test_Estado_Civil(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DatosSdoTitular_Estado_Civil()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Estado_Civil);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Estado_Civil);			
 			Test_Estado_Civil(comparer);
 		}		
 			
-		public void Test_Estado_Civil(IComparer comparer)
+		public void Test_Estado_Civil(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));			
 			Assert.IsFalse(comparer.IsMatch("gato"));
@@ -440,32 +441,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Calle()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Calle);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Calle);			
 			Test_Calle(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLab_Calle()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Calle);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Calle);			
 			Test_Calle(comparer);
 		}	
 
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Calle()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Calle);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Calle);			
 			Test_Calle(comparer);
 		}	
 
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Calle()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Calle);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Calle);			
 			Test_Calle(comparer);
 		}			
 		
-		public void Test_Calle(IComparer comparer)
+		public void Test_Calle(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			
@@ -477,32 +478,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Numero()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Numero);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Numero);			
 			Test_Numero(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLab_Numero()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Numero);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Numero);			
 			Test_Numero(comparer);
 		}		
 		
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Numero()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Numero);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Numero);			
 			Test_Numero(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Numero()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Numero);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Numero);			
 			Test_Numero(comparer);
 		}		
 		
-		public void Test_Numero(IComparer comparer)
+		public void Test_Numero(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			
@@ -516,32 +517,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Piso()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Piso);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Piso);			
 			Test_Piso(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLab_Piso()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Piso);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Piso);			
 			Test_Piso(comparer);
 		}	
 
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Piso()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Piso);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Piso);			
 			Test_Piso(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Piso()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Piso);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Piso);			
 			Test_Piso(comparer);
 		}		
 		
-		public void Test_Piso(IComparer comparer)
+		public void Test_Piso(App.Comparer.IComparer comparer)
 		{
 			Assert.IsTrue(comparer.IsMatch(""));
 			
@@ -555,32 +556,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Departamento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Departamento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Departamento);			
 			Test_Departamento(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLab_Departamento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Departamento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Departamento);			
 			Test_Departamento(comparer);
 		}
 
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Departamento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Departamento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Departamento);			
 			Test_Departamento(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Departamento()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Departamento);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Departamento);			
 			Test_Departamento(comparer);
 		}		
 		
-		public void Test_Departamento(IComparer comparer)
+		public void Test_Departamento(App.Comparer.IComparer comparer)
 		{
 			Assert.IsTrue(comparer.IsMatch(""));
 			
@@ -594,32 +595,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Codigo_Postal()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Codigo_Postal);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Codigo_Postal);			
 			Test_Codigo_Postal(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLab_Codigo_Postal()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Codigo_Postal);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Codigo_Postal);			
 			Test_Codigo_Postal(comparer);
 		}		
 		
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Codigo_Postal()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Codigo_Postal);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Codigo_Postal);			
 			Test_Codigo_Postal(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Codigo_Postal()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Codigo_Postal);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Codigo_Postal);			
 			Test_Codigo_Postal(comparer);
 		}		
 		
-		public void Test_Codigo_Postal(IComparer comparer)
+		public void Test_Codigo_Postal(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("perro"));
@@ -632,32 +633,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Localidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Localidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Localidad);			
 			Test_Localidad(comparer);
 		}
 
 		[Test]
 		public void Test_ID_DomLab_Localidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Localidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Localidad);			
 			Test_Localidad(comparer);
 		}	
 
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Localidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Localidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Localidad);			
 			Test_Localidad(comparer);
 		}
 
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Localidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Localidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Localidad);			
 			Test_Localidad(comparer);
 		}		
 		
-		public void Test_Localidad(IComparer comparer)
+		public void Test_Localidad(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			
@@ -671,32 +672,32 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Codigo_de_Provincia()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Codigo_de_Provincia);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Codigo_de_Provincia);			
 			Test_Codigo_de_Provincia(comparer);
 		}
 		
 		[Test]
 		public void ID_DomLab_Codigo_de_Provincia()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Codigo_de_Provincia);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Codigo_de_Provincia);			
 			Test_Codigo_de_Provincia(comparer);
 		}	
 
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Codigo_de_Provincia()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Codigo_de_Provincia);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Codigo_de_Provincia);			
 			Test_Codigo_de_Provincia(comparer);
 		}
 		
 		[Test]
 		public void ID_DomLabSdoTitular_Codigo_de_Provincia()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Codigo_de_Provincia);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Codigo_de_Provincia);			
 			Test_Codigo_de_Provincia(comparer);
 		}		
 		
-		public void Test_Codigo_de_Provincia(IComparer comparer)
+		public void Test_Codigo_de_Provincia(App.Comparer.IComparer comparer)
 		{
 			Assert.IsFalse(comparer.IsMatch(""));
 			
@@ -716,58 +717,58 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_DomPart_Telefono()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Telefono);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Telefono);			
 			Test_Telefono(comparer);
 		}
 		
 		public void ID_DomLab_Telefono()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Telefono);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Telefono);			
 			Test_Telefono(comparer);
 		}		
 		
 		[Test]
 		public void Test_ID_DomPart_Fax()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Fax);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPart_Fax);			
 			Test_Telefono(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLab_Fax()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Fax);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLab_Fax);			
 			Test_Telefono(comparer);
 		}		
 		
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Telefono()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Telefono);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Telefono);			
 			Test_Telefono(comparer);
 		}
 		
 		public void ID_DomLabSdoTitular_Telefono()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Telefono);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Telefono);			
 			Test_Telefono(comparer);
 		}		
 		
 		[Test]
 		public void Test_ID_DomPartSdoTitular_Fax()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Fax);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomPartSdoTitular_Fax);			
 			Test_Telefono(comparer);
 		}
 		
 		[Test]
 		public void Test_ID_DomLabSdoTitular_Fax()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Fax);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DomLabSdoTitular_Fax);			
 			Test_Telefono(comparer);
 		}			
 		
-		public void Test_Telefono(IComparer comparer)
+		public void Test_Telefono(App.Comparer.IComparer comparer)
 		{
 			Assert.IsTrue(comparer.IsMatch(""));
 			
@@ -783,7 +784,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_Convenio_Lecop()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_Convenio_Lecop);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_Convenio_Lecop);			
 			Assert.IsTrue(comparer.IsMatch(""));
 			
 			Assert.IsTrue(comparer.IsMatch("Tucuman"));
@@ -797,7 +798,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_Ya_Existente()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_Ya_Existente);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_Ya_Existente);			
 			Assert.IsFalse(comparer.IsMatch(""));		
 			Assert.IsFalse(comparer.IsMatch("Tucuman"));
 			Assert.IsFalse(comparer.IsMatch("47985"));
@@ -809,7 +810,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Entidad()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Entidad);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Entidad);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -819,7 +820,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Sucursal()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Sucursal);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Sucursal);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -829,7 +830,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Verificador_B1()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Verificador_B1);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Verificador_B1);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -839,7 +840,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Tipo_Cuenta()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Tipo_Cuenta);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Tipo_Cuenta);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -854,7 +855,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Moneda_Cuenta()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Moneda_Cuenta);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Moneda_Cuenta);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -870,7 +871,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Numero_Cuenta()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Numero_Cuenta);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Numero_Cuenta);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -880,7 +881,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_CBU_Verificador_B2()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Verificador_B2);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_CBU_Verificador_B2);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -890,7 +891,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_Pago_Cuenta_Electronica()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_Pago_Cuenta_Electronica);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_Pago_Cuenta_Electronica);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -900,7 +901,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_Pago_Tarjeta_titular()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_Pago_Tarjeta_titular);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_Pago_Tarjeta_titular);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			
@@ -910,7 +911,7 @@ namespace ToBank.test
 		[Test]
 		public void Test_ID_Pago_Tarjeta_segundo()
 		{
-			IComparer comparer = ComparerFactory.CreateComparer(eRegisterId.ID_Pago_Tarjeta_segundo);			
+			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_Pago_Tarjeta_segundo);			
 			Assert.IsFalse(comparer.IsMatch(""));	
 			Assert.IsFalse(comparer.IsMatch("gato"));	
 			

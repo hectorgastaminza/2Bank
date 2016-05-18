@@ -140,7 +140,8 @@ namespace App.IO
 		{
 			object[,] retval = null;
 			
-			number--;
+			if(number>0)
+				number--;
 					
 			if(number < _sheets.Count)
 			{

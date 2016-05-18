@@ -11,6 +11,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using App.IO;
+using App.Register;
 
 namespace ToBank
 {
@@ -19,6 +20,12 @@ namespace ToBank
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		private const int PAGE_ALTAS = 1;
+		private const int PAGE_PAGOS = 2;
+		private const int DATA_ROW_INIT = 10;
+		private const int DATA_ROW_END = 100;
+		private const int DATA_ROW_OFFSET = 1;
+		
 		public MainForm()
 		{
 			//
@@ -41,7 +48,7 @@ namespace ToBank
 		{
 			if(_result)
 			{
-				GetRow(null, _excel.GetSheet(2), 10);
+				GetData(null, _excel.GetSheet(PAGE_PAGOS));
 			}
 		}
 		
@@ -141,40 +148,48 @@ namespace ToBank
 			_registers.Add(new GenericRegister(eRegisterId.ID_Ya_Existente, 1, 700, 700, eRegisterFormat.PadRight, ' '));
 			
 			/* Obtengo las filas */
-			object[,] sheet = _excel.GetSheet(1);
-			if(sheet.Rank >1)
-			{			
-				int rows_max = (sheet.GetLength(0) < 100) ? sheet.GetLength(0) : 100;
-				
-				for (int i = 10; i < rows_max; i++) {
-					string aux = GetRow(_registers, sheet, i);
-					retval.Add(aux);
-				}
-			}
+			retval = GetData(_registers, _excel.GetSheet(PAGE_ALTAS));
+			
+			App.IO.FileText file = new FileText();
+			file.Save(retval);
 			
 			return (retval);
 		}
 		
-		private string GetRow(List<GenericRegister> registers, object[,] sheet, int row)
+		
+		private List<string> GetData(List<GenericRegister> registers, object[,] sheet)
 		{
-			StringBuilder strBuilder = new StringBuilder();
+			List<string> retval = null;
 			
-			if(sheet.Rank >1)
+			if(sheet.Rank > 1)
 			{
-				if(sheet.GetLength(0) > row)
+				if(sheet.GetLength(0) > DATA_ROW_INIT)
 				{
+					retval = new List<string>();
+
+					int rows_max = (sheet.GetLength(0) < DATA_ROW_END) ? sheet.GetLength(0) : DATA_ROW_END;
 					int columns = (sheet.GetLength(1) > registers.Count) ? registers.Count : sheet.GetLength(1);
 					
-					for (int i = 0; i < columns; i++) {
-						string aux = Convert.ToString(sheet[row,(i+1)]);
-						if((i == 0) && (string.IsNullOrEmpty(aux)))
-							break;
-						strBuilder.Append(registers[i].GetValue(aux));
+					for (int i = DATA_ROW_INIT; i < rows_max; i++) {
+						StringBuilder strBuilder = new StringBuilder();
+						
+						for (int j = 0; j < columns; j++) {
+							string aux = Convert.ToString(sheet[i, (j+DATA_ROW_OFFSET)]);
+							if((j == 0) && (string.IsNullOrEmpty(aux)))
+								break;
+							strBuilder.Append(registers[j].GetValue(aux));
+						}
+						
+						string aux_strbuilder = strBuilder.ToString();
+						if(!string.IsNullOrEmpty(aux_strbuilder))
+						{
+							retval.Add(aux_strbuilder);
+						}						
 					}
 				}
 			}
 
-			return (strBuilder.ToString());
+			return (retval);
 		}
 		
 		bool _result;

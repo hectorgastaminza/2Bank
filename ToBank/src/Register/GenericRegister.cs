@@ -7,8 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using App.Comparer;
 
-namespace ToBank
+namespace App.Register
 {
 	public delegate bool DelegateRegisterOpcionalCheck();
 	
@@ -73,11 +74,12 @@ namespace ToBank
 			{
 				if(retval.Length < _length)
 				{
+					char aux_pad = (retval.Length < 1) ? ' ' : _pad;
 					// Padding
 					if(_format == eRegisterFormat.PadRight)
-						retval = retval.PadRight((int)_length, _pad);
+						retval = retval.PadRight((int)_length, aux_pad);
 					else
-						retval = retval.PadLeft((int)_length, _pad);
+						retval = retval.PadLeft((int)_length, aux_pad);
 				}
 			}
 			

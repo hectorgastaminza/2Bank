@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace ToBank
+namespace App.Register
 {
 	/// <summary>
 	/// Description of eRegisterId.
