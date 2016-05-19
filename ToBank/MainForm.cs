@@ -36,9 +36,13 @@ namespace App
 		void BtnOpenExcelClick(object sender, EventArgs e)
 		{
 			try {
-				_result = _altasPagos.OpenInput();
-			} catch (Exception ex) {
+				tsslStatus.Text = "";
+				Result = false;
+				Result = _altasPagos.OpenInput();
 				
+				tsslStatus.Text = "Carga de datos correcta";				
+			} catch (Exception ex) {
+				tsslStatus.Text = "Error en la carga de datos";
 				_Log.HandlerException(ex);
 			}
 		}
@@ -56,10 +60,12 @@ namespace App
 						App.IO.FileText file = new FileText(listFileFilter);
 						
 						file.SaveDialog(datos, "SUELDOS.txt");
+						
+						tsslStatus.Text = "Guardado de datos correcto";
 					}
 				}
 			} catch (Exception ex) {
-				
+				tsslStatus.Text = "Error en el guardado de datos";
 				_Log.HandlerException(ex);
 			}			
 		}
@@ -77,13 +83,27 @@ namespace App
 						App.IO.FileText file = new FileText(listFileFilter);
 						
 						file.SaveDialog(datos, "AMALTAS.txt");
+						
+						tsslStatus.Text = "Guardado de datos correcto";
 					}
 				}
 			} catch (Exception ex) {
-				
+				tsslStatus.Text = "Error en el guardado de datos";
 				_Log.HandlerException(ex);
 			}				
 		}	
+		
+		public bool Result { 
+			get {return _result;} 
+			set { 
+				if(value != _result)
+				{
+					_result = value;
+					btnAltas.Enabled = _result;
+					btnPagos.Enabled = _result;
+				}
+			}
+		}
 		
 		private bool _result = false;
 		private App.Model.AltasPagos _altasPagos = null;
