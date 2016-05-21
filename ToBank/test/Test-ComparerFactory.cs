@@ -51,14 +51,14 @@ namespace ToBank.test
 			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosBancarios_Sucursal);
 			Assert.IsFalse(comparer.IsMatch(""));
 			Assert.IsFalse(comparer.IsMatch("gato"));
-			
-			Assert.IsTrue(comparer.IsMatch("BNA"));
-			Assert.IsTrue(comparer.IsMatch("ANSES"));
-			Assert.IsTrue(comparer.IsMatch("BCRA"));
 
 			Assert.IsTrue(comparer.IsMatch("0"));
 			Assert.IsTrue(comparer.IsMatch("1"));
 			Assert.IsTrue(comparer.IsMatch("2"));
+			
+			Assert.IsTrue(comparer.IsMatch("25"));
+			Assert.IsTrue(comparer.IsMatch("481"));
+			Assert.IsTrue(comparer.IsMatch("4789"));			
 		}
 		
 		[Test]
@@ -339,9 +339,7 @@ namespace ToBank.test
 			Assert.IsFalse(comparer.IsMatch("gato"));			
 			Assert.IsFalse(comparer.IsMatch("123"));
 			
-			Assert.IsTrue(comparer.IsMatch("201611"));
-			Assert.IsTrue(comparer.IsMatch("20160101"));
-			Assert.IsTrue(comparer.IsMatch("201601010")); /* trunco el resultado?	*/			
+			Assert.IsTrue(comparer.IsMatch(DateTime.Now.ToString()));
 		}			
 		
 		

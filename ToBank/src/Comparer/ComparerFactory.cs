@@ -40,6 +40,7 @@ namespace App.Comparer
 				case eRegisterId.ID_Pago_Cuenta_Electronica:
 				case eRegisterId.ID_Pago_Tarjeta_titular:
 				case eRegisterId.ID_Pago_Tarjeta_segundo:
+				case eRegisterId.ID_DatosBancarios_Sucursal:
 					{
 						const string pattern = @"\d+";
 						ComparerRegex myComparer = new ComparerRegex(pattern);
@@ -142,19 +143,6 @@ namespace App.Comparer
 					break;
 				
 				/* Custom */
-				case eRegisterId.ID_DatosBancarios_Sucursal:
-					{
-						List<ComparerGeneric> auxList = new List<ComparerGeneric>();	
-						
-						auxList.Add(new ComparerGeneric("BNA" , "0"));
-						auxList.Add(new ComparerGeneric("ANSES" , "1"));
-						auxList.Add(new ComparerGeneric("BCRA" , "2"));
-
-						ComparerList myComparer = new ComparerList(auxList);
-						retval = myComparer;
-					}
-					break;				
-				
 				case eRegisterId.ID_DatosBancarios_Proceso:
 					{
 						List<ComparerGeneric> auxList = new List<ComparerGeneric>();	
