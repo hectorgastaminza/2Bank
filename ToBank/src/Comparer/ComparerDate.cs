@@ -26,7 +26,7 @@ namespace App.Comparer
 		
 		public string GetOutput()
 		{
-			return _date.ToString("yyyymmdd");
+			return _date.ToString("yyyyMMdd");
 		}
 		
 		public string GetComparer()

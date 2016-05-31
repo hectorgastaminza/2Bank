@@ -330,6 +330,8 @@ namespace ToBank.test
 		public void Test_ID_DatosSdoTitular_Fecha_de_Nacimiento()
 		{
 			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento);						
+			Assert.IsTrue(comparer.IsMatch("01/10/1949"));
+			Assert.IsTrue("19490110" == comparer.GetOutput());
 			Test_Fecha_de_Nacimiento(comparer);
 		}		
 
