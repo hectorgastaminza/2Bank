@@ -96,7 +96,7 @@ namespace App.Comparer
 				case eRegisterId.ID_DomLabSdoTitular_Calle:
 				case eRegisterId.ID_DomLabSdoTitular_Localidad:
 					{
-						const string pattern = @"[a-zA-Z0-9 .-º]*";
+						const string pattern = @"[a-zA-Z0-9 -º().]*";
 						ComparerRegex myComparer = new ComparerRegex(pattern);
 						retval = myComparer;
 					}
@@ -113,7 +113,7 @@ namespace App.Comparer
 				case eRegisterId.ID_Convenio_Lecop:				
 				case eRegisterId.ID_Filler:
 					{
-						const string pattern = @"[a-zA-Z0-9 .-º]*";
+						const string pattern = @"[a-zA-Z0-9 -º().]*";
 						ComparerRegex myComparer = new ComparerRegex(pattern, true);
 						retval = myComparer;
 					}				

@@ -330,10 +330,9 @@ namespace ToBank.test
 		public void Test_ID_DatosSdoTitular_Fecha_de_Nacimiento()
 		{
 			App.Comparer.IComparer comparer = App.Comparer.ComparerFactory.CreateComparer(eRegisterId.ID_DatosSdoTitular_Fecha_de_Nacimiento);						
-			Assert.IsTrue(comparer.IsMatch("01/10/1949"));
-			Assert.IsTrue("19490110" == comparer.GetOutput());
+						
 			Test_Fecha_de_Nacimiento(comparer);
-		}		
+		}	
 
 		public void Test_Fecha_de_Nacimiento(App.Comparer.IComparer comparer)
 		{
@@ -342,7 +341,10 @@ namespace ToBank.test
 			Assert.IsFalse(comparer.IsMatch("123"));
 			
 			Assert.IsTrue(comparer.IsMatch(DateTime.Now.ToString()));
-		}			
+			
+			Assert.IsTrue(comparer.IsMatch("01/10/1949"));
+			Assert.That(comparer.GetOutput(), Is.EqualTo("19491001"));			
+		}
 		
 		
 		[Test]
@@ -372,8 +374,11 @@ namespace ToBank.test
 			Assert.IsTrue(comparer.IsMatch("Bolivia"));
 			Assert.IsTrue(comparer.IsMatch("BV"));			
 			Assert.IsTrue(comparer.IsMatch("Estados Unidos"));
-			Assert.IsTrue(comparer.IsMatch("EU"));			
-		}			
+			Assert.IsTrue(comparer.IsMatch("EU"));		
+
+			Assert.IsTrue(comparer.IsMatch("Argentina"));
+			Assert.That(comparer.GetOutput(), Is.EqualTo("AR"));			
+		}
 			
 		
 		[Test]
@@ -472,6 +477,10 @@ namespace ToBank.test
 			
 			Assert.IsTrue(comparer.IsMatch("Bv. Chacabuco"));
 			Assert.IsTrue(comparer.IsMatch("Av. Del Libertador"));
+			
+			string str_1 = "MARTIN FIERRO - B° DIAGONAL NORTE (ALT. AV MITRE 2900)";
+			Assert.IsTrue(comparer.IsMatch(str_1));
+			Assert.That(comparer.GetOutput(), Is.EqualTo(str_1).IgnoreCase);
 		}
 		
 		
