@@ -133,9 +133,11 @@ namespace App.Comparer
 				case eRegisterId.ID_DomPartSdoTitular_Numero:
 				case eRegisterId.ID_DomLabSdoTitular_Numero:
 					{						
-						List<string> commands = new List<string>();
-						commands.Add(@"s/n");
-						commands.Add(@"S/N");
+						string output = @"S/N";
+						List<ComparerGeneric> commands = new List<ComparerGeneric>();
+						commands.Add(new ComparerGeneric(string.Empty, output));
+						commands.Add(new ComparerGeneric(@"0", output));
+						commands.Add(new ComparerGeneric(@"s/n", output));
 						const string pattern = @"[a-zA-Z0-9 .]+";
 						ComparerRegex myComparer = new ComparerRegex(pattern, false, commands);						
 						retval = myComparer;

@@ -31,6 +31,8 @@ namespace App
 			//
 			_Log = new App.View.AppLog();
 			_altasPagos = new App.Model.AltasPagos();
+			
+			lblVersion.Text = "V." + System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
 		}
 		
 		void BtnOpenExcelClick(object sender, EventArgs e)

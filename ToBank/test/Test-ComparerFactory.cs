@@ -514,13 +514,25 @@ namespace ToBank.test
 		
 		public void Test_Numero(App.Comparer.IComparer comparer)
 		{
-			Assert.IsFalse(comparer.IsMatch(""));
-			
 			Assert.IsTrue(comparer.IsMatch("S/N"));
 			Assert.IsTrue(comparer.IsMatch("s/n"));
 			Assert.IsTrue(comparer.IsMatch("Bv. Chacabuco"));
 			Assert.IsTrue(comparer.IsMatch("Av. Del Libertador"));
-		}	
+
+			string str_out = @"S/N";			
+			string str_in = @"";
+			Assert.IsTrue(comparer.IsMatch(str_in));
+			Assert.That(comparer.GetOutput(), Is.EqualTo(str_out).IgnoreCase);						
+			str_in = @"0";
+			Assert.IsTrue(comparer.IsMatch(str_in));
+			Assert.That(comparer.GetOutput(), Is.EqualTo(str_out).IgnoreCase);			
+			str_in = @"s/n";
+			Assert.IsTrue(comparer.IsMatch(str_in));
+			Assert.That(comparer.GetOutput(), Is.EqualTo(str_out).IgnoreCase);			
+			str_in = @"S/N";
+			Assert.IsTrue(comparer.IsMatch(str_in));
+			Assert.That(comparer.GetOutput(), Is.EqualTo(str_out).IgnoreCase);			
+		}
 
 
 		[Test]

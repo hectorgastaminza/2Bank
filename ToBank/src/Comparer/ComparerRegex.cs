@@ -26,7 +26,7 @@ namespace App.Comparer
 	/// </summary>
 	public class ComparerRegex : IComparer
 	{
-		public ComparerRegex(String pattern, bool empty, List<string> commands)
+		public ComparerRegex(String pattern, bool empty, List<ComparerGeneric> commands)
 			:this(pattern,empty)
 		{
 			_commands = commands;
@@ -46,30 +46,30 @@ namespace App.Comparer
 		public bool IsMatch(string value)
 		{
 			bool retval = false;
-			
-			if(string.IsNullOrEmpty(value))
+
+			if((_commands != null) && (_commands.Count >0))
 			{
-				if(_empty)
+				foreach (ComparerGeneric element in _commands)
 				{
-				   	retval = true;					
-				}
-				_output = string.Empty;
-			}
-			else
-			{
-				if((_commands != null) && (_commands.Count >0))
-				{
-					foreach (string element in _commands) 
+					if(element.IsMatch(value))
 					{
-						if(value.Contains(element))
-						{
-							_output = element;
-							retval = true;
-						}
+						_output = element.GetOutput();
+						retval = true;
 					}
 				}
-				
-				if(!retval)
+			}
+			
+			if(!retval)
+			{
+				if(string.IsNullOrEmpty(value))
+				{
+					if(_empty)
+					{
+						retval = true;
+					}
+					_output = string.Empty;
+				}
+				else
 				{
 					Match myMatch = Regex.Match(value, _pattern);
 					
@@ -77,9 +77,9 @@ namespace App.Comparer
 					{
 						_output = myMatch.Value;
 					}
-						
-					retval = myMatch.Success;				
-				}				
+					
+					retval = myMatch.Success;					
+				}
 			}
 			
 			return (retval);
@@ -103,7 +103,7 @@ namespace App.Comparer
 				
 			if((_commands != null) && (_commands.Count >0))
 			{
-				foreach (string element in _commands) 
+				foreach (ComparerGeneric element in _commands) 
 				{
 					if(nFirst)
 					{
@@ -114,7 +114,7 @@ namespace App.Comparer
 						nFirst = true;
 					}
 								
-					str_builder.Append(": " + element);
+					str_builder.Append(": " + element.GetComparer());
 				}
 			}
 				
@@ -130,6 +130,6 @@ namespace App.Comparer
 		private string _pattern = string.Empty;
 		private string _output = string.Empty;
 		private bool _empty = false;
-		private List<string> _commands = null;
+		private List<ComparerGeneric> _commands = null;
 	}
 }

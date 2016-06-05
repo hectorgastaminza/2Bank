@@ -21,6 +21,7 @@ namespace App
 		private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Label lblVersion;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -51,6 +52,7 @@ namespace App
 			this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.lblVersion = new System.Windows.Forms.Label();
 			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
@@ -98,7 +100,7 @@ namespace App
 			this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.tsslStatus});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 193);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 196);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(374, 22);
 			this.statusStrip1.SizingGrip = false;
@@ -133,11 +135,21 @@ namespace App
 			this.pictureBox1.TabIndex = 5;
 			this.pictureBox1.TabStop = false;
 			// 
+			// lblVersion
+			// 
+			this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblVersion.Location = new System.Drawing.Point(275, 182);
+			this.lblVersion.Name = "lblVersion";
+			this.lblVersion.Size = new System.Drawing.Size(91, 10);
+			this.lblVersion.TabIndex = 6;
+			this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(374, 215);
+			this.ClientSize = new System.Drawing.Size(374, 218);
+			this.Controls.Add(this.lblVersion);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.statusStrip1);
